@@ -1,4 +1,8 @@
 
+using CursosAPI.Data;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore;
+
 namespace CursosAPI
 {
     public class Program
@@ -8,7 +12,7 @@ namespace CursosAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddDbContext<VideoContext>(opts => opts.UseSqlServer("server = localhost; database = curso; user = sa; password = 1q2w3e4r@#$"));
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
