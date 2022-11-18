@@ -1,4 +1,5 @@
-﻿using CursosAPI.Models;
+﻿using CursosAPI.Data;
+using CursosAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursosAPI.Controllers
@@ -7,30 +8,35 @@ namespace CursosAPI.Controllers
     [Route("[controller]")]
     public class VideosController : ControllerBase
     {
-        private static List<Video> videos = new List<Video>();
-        private static int id = 1;
+        private VideoContext _context;
+
+        public VideosController(VideoContext context)
+        {
+            _context = context;
+        }
+
 
         //conforme padrão arquitetural REST, deve retornar uma action e onde o conteúdo foi criado
         [HttpPost]
         public IActionResult AdicionaVideo([FromBody] Video video)
         {
-            video.Id = id++;
-            videos.Add(video);
+            _context.Videos.Add(video);
+            _context.SaveChanges();
             return CreatedAtAction(nameof(RecuperaVideoPorId), new { Id = video.Id }, video);
         }
 
         [HttpGet]
-        public IActionResult RecuperaVideos()
+        public IEnumerable<Video> RecuperaVideos()
         {
-            return Ok(videos);
+            return _context.Videos;
         }
 
         [HttpGet("{id}")]
         public IActionResult RecuperaVideoPorId(int id)
         {
-            Video video = videos.FirstOrDefault(video => video.Id == id);
+            Video video = _context.Videos.FirstOrDefault(video => video.Id == id);
 
-            if(video != null)
+            if (video != null)
             {
                 return Ok(video);
             }
