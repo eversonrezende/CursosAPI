@@ -42,5 +42,41 @@ namespace CursosAPI.Controllers
             }
             return NotFound();
         }
+
+        //conforme padrão arquitetural REST, deve retornar uma action que não existe conteúdo
+        [HttpPut("{id}")]
+        public IActionResult AtualizaVideo(int id, Video videoNovo)
+        {
+            Video video = _context.Videos.FirstOrDefault(video => video.Id == id);
+
+            if(video == null)
+            {
+                return NotFound();
+            }
+
+            video.Titulo = videoNovo.Titulo;
+            video.Descricao = videoNovo.Descricao;
+            video.URL = videoNovo.URL;
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        //conforme padrão arquitetural REST, deve retornar uma action que não existe conteúdo
+        [HttpDelete("{id}")]
+        public IActionResult DeletaVideo(int id)
+        {
+            Video video = _context.Videos.FirstOrDefault(video => video.Id == id);
+
+            if (video == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(video);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
     }
 }
