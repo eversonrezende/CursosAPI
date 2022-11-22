@@ -14,11 +14,11 @@ As principais funcionalidades serão:
 Tecnologias utilizadas:
 
 ```
-.Net 7.0
+.Net v7.0.100
 ```
 ```
-Postman
+Postman v10.4.0
 ```
 ```
-Banco de Dados: Azure Data Studio com SQL Server 
+Banco de Dados: Azure Data Studio v1.40.0 com SQL Server 
 ```
