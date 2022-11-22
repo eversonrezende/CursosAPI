@@ -49,7 +49,7 @@ namespace CursosAPI.Controllers
         {
             Video video = _context.Videos.FirstOrDefault(video => video.Id == id);
 
-            if(video == null)
+            if (video == null)
             {
                 return NotFound();
             }

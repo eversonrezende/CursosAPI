@@ -5,7 +5,7 @@ namespace CursosAPI.Data
 {
     public class VideoContext : DbContext
     {
-        public VideoContext(DbContextOptions<VideoContext> opt) : base (opt)
+        public VideoContext(DbContextOptions<VideoContext> opt) : base(opt)
         {
 
         }
