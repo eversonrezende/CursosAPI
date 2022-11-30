@@ -1,4 +1,5 @@
 ﻿using CursosAPI.Data;
+using CursosAPI.Data.Dtos;
 using CursosAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,14 @@ namespace CursosAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionaCategoria([FromBody] Categoria categoria)
+        public IActionResult AdicionaCategoria([FromBody] CreateCategoriaDto categoriaDto)
         {
+            Categoria categoria = new Categoria
+            {
+                Cor = categoriaDto.Cor,
+                Titulo = categoriaDto.Titulo
+            };
+
             _context.Add(categoria);
             _context.SaveChanges();
             return CreatedAtAction(nameof(RecuperaCategoria), new { Id = categoria.Id }, categoria);
@@ -36,14 +43,22 @@ namespace CursosAPI.Controllers
 
             if (categoria != null)
             {
-                return Ok(categoria);
+                ReadCategoriaDto categoriaDto = new ReadCategoriaDto
+                {
+                    Cor = categoria.Cor,
+                    Titulo = categoria.Titulo,
+                    Id = id,
+                    HoraConsulta = DateTime.Now
+                };
+
+                return Ok(categoriaDto);
             }
 
             return NotFound();
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaCategoria(int id, Categoria categoriaNovo)
+        public IActionResult AtualizaCategoria(int id, [FromBody] UpdateCategoriaDto categoriaDto)
         {
             Categoria categoria = _context.Categorias.FirstOrDefault(categoria => categoria.Id == id);
 
@@ -52,8 +67,8 @@ namespace CursosAPI.Controllers
                 return NotFound();
             }
 
-            categoria.Titulo = categoriaNovo.Titulo;
-            categoria.Cor = categoriaNovo.Cor;
+            categoria.Titulo = categoriaDto.Titulo;
+            categoria.Cor = categoriaDto.Cor;
             _context.SaveChanges();
             return NoContent();
         }
