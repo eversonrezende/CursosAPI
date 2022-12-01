@@ -5,6 +5,8 @@ C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\CursosAPI.deps.json
 C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\CursosAPI.runtimeconfig.json
 C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\CursosAPI.dll
 C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\CursosAPI.pdb
+C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\AutoMapper.dll
+C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\Azure.Core.dll
 C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\Azure.Identity.dll
 C:\dev\CursosAPI\CursosAPI\bin\Debug\net7.0\Humanizer.dll

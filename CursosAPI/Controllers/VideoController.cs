@@ -1,4 +1,5 @@
-﻿using CursosAPI.Data;
+﻿using AutoMapper;
+using CursosAPI.Data;
 using CursosAPI.Data.Dtos;
 using CursosAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,23 +11,19 @@ namespace CursosAPI.Controllers
     public class VideosController : ControllerBase
     {
         private VideoContext _context;
+        private IMapper _mapper;
 
-        public VideosController(VideoContext context)
+        public VideosController(VideoContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
-
 
         //conforme padrão arquitetural REST, deve retornar uma action e onde o conteúdo foi criado
         [HttpPost]
         public IActionResult AdicionaVideo([FromBody] CreateVideoDto videoDto)
         {
-            Video video = new Video
-            {
-                Descricao = videoDto.Descricao,
-                Titulo = videoDto.Titulo,
-                URL = videoDto.URL
-            }; 
+            Video video = _mapper.Map<Video>(videoDto);
 
             _context.Videos.Add(video);
             _context.SaveChanges();
@@ -46,14 +43,7 @@ namespace CursosAPI.Controllers
 
             if (video != null)
             {
-                ReadVideoDto videoDto = new ReadVideoDto
-                {
-                    Descricao = video.Descricao,
-                    Titulo = video.Titulo,
-                    URL = video.URL,
-                    Id = video.Id,
-                    HoraConsulta = DateTime.Now
-                };
+                ReadVideoDto videoDto = _mapper.Map<ReadVideoDto>(video);
 
                 return Ok(videoDto);
             }
@@ -71,9 +61,7 @@ namespace CursosAPI.Controllers
                 return NotFound();
             }
 
-            video.Titulo = videoDto.Titulo;
-            video.Descricao = videoDto.Descricao;
-            video.URL = videoDto.URL;
+            _mapper.Map(videoDto, video);
             _context.SaveChanges();
             return NoContent();
         }
