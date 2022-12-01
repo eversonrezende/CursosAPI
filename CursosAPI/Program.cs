@@ -1,6 +1,5 @@
 
 using CursosAPI.Data;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 
 namespace CursosAPI

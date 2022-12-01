@@ -3,7 +3,6 @@ using CursosAPI.Data;
 using CursosAPI.Data.Dtos;
 using CursosAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CursosAPI.Controllers
 {
