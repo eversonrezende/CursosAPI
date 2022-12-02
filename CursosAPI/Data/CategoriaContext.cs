@@ -1,15 +1,14 @@
 ﻿using CursosAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CursosAPI.Data
+namespace CursosAPI.Data;
+
+public class CategoriaContext : DbContext
 {
-    public class CategoriaContext : DbContext
+    public CategoriaContext(DbContextOptions<CategoriaContext> opt) : base(opt)
     {
-        public CategoriaContext(DbContextOptions<CategoriaContext> opt) : base(opt)
-        {
 
-        }
-
-        public DbSet<Categoria> Categorias { get; set; }
     }
+
+    public DbSet<Categoria> Categorias { get; set; }
 }

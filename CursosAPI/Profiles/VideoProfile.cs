@@ -2,16 +2,15 @@
 using CursosAPI.Data.Dtos;
 using CursosAPI.Models;
 
-namespace CursosAPI.Profiles
-{
+namespace CursosAPI.Profiles;
 
-    public class VideoProfile : Profile
+
+public class VideoProfile : Profile
+{
+    public VideoProfile()
     {
-        public VideoProfile()
-        {
-            CreateMap<CreateVideoDto, Video>();
-            CreateMap<Video, ReadVideoDto>();
-            CreateMap<UpdateVideoDto, Video>();
-        }
+        CreateMap<CreateVideoDto, Video>();
+        CreateMap<Video, ReadVideoDto>();
+        CreateMap<UpdateVideoDto, Video>();
     }
 }

@@ -2,15 +2,14 @@
 using CursosAPI.Data.Dtos;
 using CursosAPI.Models;
 
-namespace CursosAPI.Profiles
+namespace CursosAPI.Profiles;
+
+public class CategoriaProfile : Profile
 {
-    public class CategoriaProfile : Profile
+    public CategoriaProfile()
     {
-        public CategoriaProfile()
-        {
-            CreateMap<CreateCategoriaDto, Categoria>();
-            CreateMap<Categoria, ReadCategoriaDto>();
-            CreateMap<UpdateCategoriaDto, Categoria>();
-        }
+        CreateMap<CreateCategoriaDto, Categoria>();
+        CreateMap<Categoria, ReadCategoriaDto>();
+        CreateMap<UpdateCategoriaDto, Categoria>();
     }
 }
