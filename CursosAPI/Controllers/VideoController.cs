@@ -27,7 +27,9 @@ public class VideosController : ControllerBase
 
         _context.Videos.Add(video);
         _context.SaveChanges();
-        return CreatedAtAction(nameof(RecuperaVideoPorId), new { Id = video.Id }, video);
+        return CreatedAtAction(nameof(RecuperaVideoPorId),
+            new { id = video.Id },
+            video);
     }
 
     [HttpGet]
